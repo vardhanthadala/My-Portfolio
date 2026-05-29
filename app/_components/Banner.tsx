@@ -40,8 +40,8 @@ const Banner = () => {
                 className="container h-[100svh] min-h-[530px] max-md:pb-10 flex justify-between items-center max-md:flex-col"
                 ref={containerRef}
             >
-       <div className="max-md:grow max-md:flex flex-col justify-center items-start max-w-[544px]">
-    <h1 className="banner-title slide-up-and-fade leading-[.95] text-5xl mobile-m:text-6xl sm:text-7xl md:text-[80px] lg:text-[90px] laptop-l:text-[120px] 4k:text-[200px] font-anton">
+       <div className="max-md:grow max-md:flex flex-col justify-center items-start max-w-[544px] laptop-l:max-w-[800px] 2xl:max-w-[1000px] 4k:max-w-[1500px]">
+    <h1 className="banner-title slide-up-and-fade leading-[.95] text-5xl mobile-m:text-6xl sm:text-7xl md:text-[80px] lg:text-[90px] laptop-l:text-[120px] 4k:text-[200px] font-anton mt-24 md:mt-0">
         <span className="text-primary">FULL STACK</span>
         <br />
         <span className="ml-2 mobile-m:ml-4">& GEN AI DEV</span>
