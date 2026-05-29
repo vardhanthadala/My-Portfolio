@@ -1,0 +1,79 @@
+'use client';
+import SectionTitle from '@/components/SectionTitle';
+import { MY_EXPERIENCE } from '@/lib/data';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+import { useRef } from 'react';
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const Experiences = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(
+        () => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'top 60%',
+                    end: 'bottom 50%',
+                    toggleActions: 'restart none none reverse',
+                    scrub: 1,
+                },
+            });
+
+            tl.from('.experience-item', {
+                y: 50,
+                opacity: 0,
+                stagger: 0.3,
+            });
+        },
+        { scope: containerRef },
+    );
+
+    useGSAP(
+        () => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: 'bottom 50%',
+                    end: 'bottom 20%',
+                    scrub: 1,
+                },
+            });
+
+            tl.to(containerRef.current, {
+                y: -150,
+                opacity: 0,
+            });
+        },
+        { scope: containerRef },
+    );
+
+    return (
+        <section className="py-section" id="my-experience">
+            <div className="container" ref={containerRef}>
+                <SectionTitle title="My Experience" />
+
+                <div className="grid gap-10 mobile-m:gap-14 4k:gap-28">
+                    {MY_EXPERIENCE.map((item) => (
+                        <div key={item.title} className="experience-item">
+                            <p className="text-lg mobile-m:text-xl laptop-l:text-2xl 4k:text-5xl text-muted-foreground">
+                                {item.company}
+                            </p>
+                            <p className="text-4xl mobile-m:text-5xl laptop-l:text-6xl 4k:text-[100px] font-anton leading-none mt-2 mobile-m:mt-3.5 mb-2 4k:mt-10 4k:mb-6">
+                                {item.title}
+                            </p>
+                            <p className="text-base mobile-m:text-lg laptop-l:text-xl 4k:text-4xl text-muted-foreground">
+                                {item.duration}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Experiences;
